@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+      meta content="width=device-width, initial-scale=1.0" name="viewport"
+        title TaskManager
+        = stylesheet_link_tag "application", :media => "all", "data-turbolinks-track" => true
+        = javascript_include_tag "application", "data-turbolinks-track" => true
+        = csrf_meta_tags
+  body ng-app="taskManager"
+    .container
+      nav.navbar.navbar-inverse role="navigation"
+        .navbar-header
+          button.navbar-toggle data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button"
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          = link_to 'TaskManager', root_path, :'data-no-turbolink' => true, :class => 'navbar-brand'
+        .collapse.navbar-collapse.navbar-ex1-collapse
+          ul.nav.navbar-nav.navbar-right.navbar-user
+            - if user_signed_in?
+              li= link_to "#{current_user.email} | Log out", destroy_user_session_path, method: :delete
+            - else
+              li= link_to 'Sign Up', new_user_registration_path
+              li= link_to 'Sign In', new_user_session_path
+    .container
+      = yield

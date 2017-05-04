@@ -1,0 +1,45 @@
+div ng-controller="TaskCtrl"
+  h2
+    span Task List
+    span.btn.btn-default style='margin-left: 15px;' type="button" ng-click="addTask()" Add
+
+  form name="taskForm" ng-show="showForm"
+    .col-md-12
+      .col-md-5
+        .form-group
+          label Title
+          input.form-control name="title" ng-model="task.title" type="text"
+      .col-md-5
+        .form-group
+          label Description
+          input.form-control name="description" ng-model="task.description" type="text"
+      .form-group.hidden
+        label User ID
+        input.form-control name="user_id" ng-model="task.user_id" type="text" ng-init="task.user_id = #{current_user.id}"
+      .col-md-2
+        button.btn.btn-primary style='margin-top: 24px;' type="submit" ng-hide="showEdit" ng-click="createTask()" Create
+        button.btn.btn-primary style='margin-top: 24px;' type="submit" ng-show="showEdit" ng-click="updateTask()" Update
+
+
+  table.row.table.table-bordered.table-hover.table-striped.table-responsive
+    thead
+      th.col-md-1.text-center ID
+      th.col-md-2 Title
+      th.col-md-5 Description
+      th.col-md-1.text-center Complete
+      th.col-md-2.text-center Action
+    tbody
+      tr ng-repeat="task in myTasks | orderBy:'id'"
+        td.text-center
+          | {{task.id}}
+        td
+          | {{task.title}}
+        td
+          | {{task.description}}
+        td.text-center
+          input type="checkbox" ng-model="task.completed" ng-change="toggleTask(task)"
+        td.text-center
+          button.btn.btn-info.btn-xs type='button' ng-click='editTask(task, $index)'
+            span.glyphicon.glyphicon-pencil
+          button.btn.btn-danger.btn-xs type='button' ng-click='deleteTask(task, $index)'
+            span.glyphicon.glyphicon-trash
