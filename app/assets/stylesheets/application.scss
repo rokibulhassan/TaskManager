@@ -17,3 +17,9 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.col-center {
+  float: none;
+  display: block;
+  margin: 0 auto;
+}
