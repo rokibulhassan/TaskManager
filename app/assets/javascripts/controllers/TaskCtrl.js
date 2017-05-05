@@ -1,17 +1,25 @@
 app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Notification) {
 
-    $scope.showEdit = false;
-    $scope.showForm = false;
+    getTasks();
+    mangeDom(false, false);
 
+    function mangeDom(showEdit, showForm) {
+        $scope.showEdit = showEdit;
+        $scope.showForm = showForm;
+    }
 
-    (function getTasks() {
+    function clearTaskForm() {
+        $scope.task = '';
+    }
+
+    function getTasks() {
         taskService.getTasks()
             .then(function (response) {
                 $scope.myTasks = response.data;
             }, function (error) {
                 Notification.error('Unable to load data: ' + error.message);
             });
-    })();
+    };
 
     $scope.createTask = function () {
         var task = $scope.task;
@@ -19,6 +27,7 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
             .then(function (response) {
                 Notification.success('Task has been created successfully.');
                 $scope.myTasks.push(response.data);
+                clearTaskForm();
             }, function (error) {
                 Notification.error('Unable to create task: ' + error.message);
             });
@@ -26,14 +35,13 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
 
 
     $scope.addTask = function () {
-        $scope.showForm = true;
-        $scope.showEdit = false;
+        clearTaskForm();
+        mangeDom(false, true);
     };
 
     $scope.editTask = function (task, index) {
         $scope.index = index;
-        $scope.showForm = true;
-        $scope.showEdit = true;
+        mangeDom(true, true);
         $scope.task = angular.copy(task);
     };
 
@@ -47,6 +55,7 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
                         $scope.myTasks[i] = task;
                     }
                 }
+                clearTaskForm();
             }, function (error) {
                 Notification.error('Unable to update task: ' + error.message);
             });

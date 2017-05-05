@@ -1,27 +1,29 @@
-div ng-controller="TaskCtrl"
+div.row ng-controller="TaskCtrl"
   h2
     span Task List
-    span.btn.btn-default style='margin-left: 15px;' type="button" ng-click="addTask()" Add
+    span.btn.btn-default.extra-space type="button" ng-click="addTask()" Add
 
-  form name="taskForm" ng-show="showForm"
-    .col-md-12
-      .col-md-5
-        .form-group
-          label Title
-          input.form-control name="title" ng-model="task.title" type="text"
-      .col-md-5
-        .form-group
-          label Description
-          input.form-control name="description" ng-model="task.description" type="text"
-      .form-group.hidden
-        label User ID
-        input.form-control name="user_id" ng-model="task.user_id" type="text" ng-init="task.user_id = #{current_user.id}"
-      .col-md-2
-        button.btn.btn-primary style='margin-top: 24px;' type="submit" ng-hide="showEdit" ng-click="createTask()" Create
-        button.btn.btn-primary style='margin-top: 24px;' type="submit" ng-show="showEdit" ng-click="updateTask()" Update
+  .panel.panel-default ng-show="showForm"
+    .panel-body
+      form name="taskForm"
+        .col-md-12
+          .col-md-5
+            .form-group
+              label Title
+              input.form-control name="title" ng-model="task.title" type="text"
+          .col-md-5
+            .form-group
+              label Description
+              input.form-control name="description" ng-model="task.description" type="text"
+          .form-group.hidden
+            label User ID
+            input.form-control name="user_id" ng-model="task.user_id" type="text" ng-init="task.user_id = #{current_user.id}"
+          .col-md-2.text-right
+            button.btn.btn-primary.go-down type="submit" ng-hide="showEdit" ng-click="createTask()" Create
+            button.btn.btn-primary.go-down type="submit" ng-show="showEdit" ng-click="updateTask()" Update
 
 
-  table.row.table.table-bordered.table-hover.table-striped.table-responsive
+  table.table.table-bordered.table-hover.table-striped.table-responsive
     thead
       th.col-md-1.text-center ID
       th.col-md-2 Title

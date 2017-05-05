@@ -14,7 +14,6 @@
  *= require lib/angular-ui-notification.min.css
  *= require_self
  */
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -22,4 +21,12 @@
   float: none;
   display: block;
   margin: 0 auto;
+}
+
+.extra-space {
+  margin-left: 15px;
+}
+
+.go-down {
+  margin-top: 24px;
 }
