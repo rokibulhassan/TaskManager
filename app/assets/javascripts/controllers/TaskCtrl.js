@@ -35,7 +35,6 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
 
 
     $scope.addTask = function () {
-        clearTaskForm();
         mangeDom(false, true);
     };
 
