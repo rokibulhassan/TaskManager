@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destroy]
 
   def index
-    render json: current_user.tasks
+    render json: current_user.tasks.as_json(:except => [:created_at, :updated_at])
   end
 
   def create

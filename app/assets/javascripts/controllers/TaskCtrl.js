@@ -8,10 +8,6 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
         $scope.showForm = showForm;
     }
 
-    function clearTaskForm() {
-        $scope.task = '';
-    }
-
     function getTasks() {
         taskService.getTasks()
             .then(function (response) {
@@ -27,7 +23,6 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
             .then(function (response) {
                 Notification.success('Task has been created successfully.');
                 $scope.myTasks.push(response.data);
-                clearTaskForm();
             }, function (error) {
                 Notification.error('Unable to create task: ' + error.message);
             });
@@ -54,7 +49,6 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
                         $scope.myTasks[i] = task;
                     }
                 }
-                clearTaskForm();
             }, function (error) {
                 Notification.error('Unable to update task: ' + error.message);
             });
