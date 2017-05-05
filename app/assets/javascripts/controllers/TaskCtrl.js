@@ -13,7 +13,7 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
             .then(function (response) {
                 $scope.myTasks = response.data;
             }, function (error) {
-                Notification.error('Unable to load data: ' + error.message);
+                Notification.error('Unable to load data: ' + error.statusText);
             });
     };
 
@@ -24,7 +24,7 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
                 Notification.success('Task has been created successfully.');
                 $scope.myTasks.push(response.data);
             }, function (error) {
-                Notification.error('Unable to create task: ' + error.message);
+                Notification.error('Unable to create task: ' + error.statusText);
             });
     };
 
@@ -50,7 +50,7 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
                     }
                 }
             }, function (error) {
-                Notification.error('Unable to update task: ' + error.message);
+                Notification.error('Unable to update task: ' + error.statusText);
             });
     };
 
@@ -59,7 +59,7 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
             .then(function (response) {
                 Notification.success('Task has been updated successfully.');
             }, function (error) {
-                Notification.error('Unable to update task: ' + error.message);
+                Notification.error('Unable to update task: ' + error.statusText);
             });
     };
 
@@ -71,7 +71,7 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
                     Notification.success('Task has been deleted successfully.');
                     $scope.myTasks.splice(index, 1);
                 }, function (error) {
-                    Notification.error('Unable to delete task: ' + error.message);
+                    Notification.error('Unable to delete task: ' + error.statusText);
                 });
         }
     };
