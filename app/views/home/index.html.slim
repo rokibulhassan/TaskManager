@@ -1,4 +1,4 @@
-div.row ng-controller="TaskCtrl"
+div ng-controller="TaskCtrl"
   h2
     span Task List
     span.btn.btn-default.extra-space type="button" ng-click="addTask()" Add
@@ -41,7 +41,7 @@ div.row ng-controller="TaskCtrl"
         td.text-center
           input type="checkbox" ng-model="task.completed" ng-change="toggleTask(task)"
         td.text-center
-          button.btn.btn-info.btn-xs type='button' ng-click='editTask(task, $index)'
+          button.btn.btn-info.btn-xs.extra-space type='button' ng-click='editTask(task, $index)'
             span.glyphicon.glyphicon-pencil
-          button.btn.btn-danger.btn-xs type='button' ng-click='deleteTask(task, $index)'
+          button.btn.btn-danger.btn-xs.extra-space type='button' ng-click='deleteTask(task, $index)'
             span.glyphicon.glyphicon-trash

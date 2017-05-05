@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: task_manager
+  database: dev_task_manager
   pool: 5
   username:
   password:
@@ -9,7 +9,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: task_manager
+  database: test_task_manager
   pool: 5
   username:
   password:
@@ -17,7 +17,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: task_manager
+  database: prod_task_manager
   pool: 5
   username:
   password:
