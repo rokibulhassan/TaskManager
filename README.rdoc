@@ -1,28 +1,14 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Following steps are necessary to get the script up and running.
 
-Things you may want to cover:
+* Open terminal and run the following commands
 
-* Ruby version
+* <tt>git clone https://github.com/rokibulhassan/TaskManager.git</tt>
+* <tt>cd TaskManager</tt>
+* <tt>bundle install</tt>
+* <tt>rake db:create</tt>
+* <tt>rake db:migrate</tt>
+* <tt>rails s</tt>
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Please do registration and login, To see the demo browse this url https://thawing-wildwood-54815.herokuapp.com
