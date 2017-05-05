@@ -13,6 +13,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'slim'
 gem 'devise'
+gem 'cancan'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
 

@@ -4,7 +4,7 @@ RSpec.describe TasksController, type: :controller do
   context "when user logged in" do
 
     let(:user) { FactoryGirl.create(:user) }
-
+    let(:anonymous) { FactoryGirl.create(:user, email: 'anonymous@gmail.com') }
 
     before { sign_in(user) }
 
@@ -72,6 +72,15 @@ RSpec.describe TasksController, type: :controller do
           patch :update, id: 0, task: {completed: true}
         }.to raise_error(ActiveRecord::RecordNotFound)
       end
+
+      it "anonymous can't mange other tasks" do
+        task = FactoryGirl.create(:task, user: anonymous)
+
+        patch :update, id: task.id, task: {completed: true}
+        expect(response.status).to eq(302)
+        expect(task.completed).to eq(false)
+      end
+
     end
 
 
@@ -86,6 +95,13 @@ RSpec.describe TasksController, type: :controller do
       it "should delete record" do
         delete :destroy, id: task.id
         expect { task.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it "anonymous can't mange other tasks" do
+        task = FactoryGirl.create(:task, user: anonymous)
+
+        delete :destroy, id: task.id
+        expect(response.status).to eq(302)
       end
     end
 
