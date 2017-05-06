@@ -3,6 +3,11 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
     getTasks();
     mangeDom(false, false);
 
+    function clearTaskForm() {
+        $scope.task.title = null;
+        $scope.task.description = null;
+    }
+
     function mangeDom(showEdit, showForm) {
         $scope.showEdit = showEdit;
         $scope.showForm = showForm;
@@ -23,6 +28,7 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
             .then(function (response) {
                 Notification.success('Task has been created successfully.');
                 $scope.myTasks.push(response.data);
+                clearTaskForm();
             }, function (error) {
                 Notification.error('Unable to create task: ' + error.statusText);
             });

@@ -31,7 +31,7 @@ div ng-controller="TaskCtrl"
       th.col-md-1.text-center Complete
       th.col-md-2.text-center Action
     tbody
-      tr ng-repeat="task in myTasks | orderBy:'id'"
+      tr ng-repeat="task in myTasks | orderBy:'id'" ng-class="{'success': task.completed == true}"
         td.text-center
           | {{task.id}}
         td
