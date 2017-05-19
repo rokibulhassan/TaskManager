@@ -69,13 +69,13 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
             });
     };
 
-    $scope.deleteTask = function (task, index) {
+    $scope.deleteTask = function (task) {
         confirmed = confirm('Confirm delete?');
         if (confirmed) {
             taskService.deleteTask(task.id)
                 .then(function (response) {
                     Notification.success('Task has been deleted successfully.');
-                    $scope.myTasks.splice(index, 1);
+                    $scope.myTasks.splice($scope.myTasks.indexOf(task), 1);
                 }, function (error) {
                     Notification.error('Unable to delete task: ' + error.statusText);
                 });

@@ -1,9 +1,9 @@
 div ng-controller="TaskCtrl"
   h2
-    span Task List
+    span Task Board
     span.btn.btn-default.extra-space type="button" ng-click="addTask()" Add
 
-  .panel.panel-default ng-show="showForm"
+  .panel ng-show="showForm"
     .panel-body
       form name="taskForm"
         .col-md-12
@@ -22,26 +22,19 @@ div ng-controller="TaskCtrl"
             button.btn.btn-primary.go-down type="submit" ng-hide="showEdit" ng-click="createTask()" Create
             button.btn.btn-primary.go-down type="submit" ng-show="showEdit" ng-click="updateTask()" Update
 
+  .row
+    ul.notes
+      li ng-repeat="task in myTasks | orderBy:'id'"
+        .sticky-notes ng-class="task.completed ? ($even ? 'rotate-1 green-bg' : 'rotate-2 green-bg') : ($even ? 'rotate-1 yellow-bg' : 'rotate-2 yellow-bg')"
+          h4
+            | {{task.title}}  # {{task.id}}
+          p
+            | {{task.description}}
 
-  table.table.table-bordered.table-hover.table-striped.table-responsive
-    thead
-      th.col-md-1.text-center ID
-      th.col-md-2 Title
-      th.col-md-5 Description
-      th.col-md-1.text-center Complete
-      th.col-md-2.text-center Action
-    tbody
-      tr ng-repeat="task in myTasks | orderBy:'id'" ng-class="{'success': task.completed == true}"
-        td.text-center
-          | {{task.id}}
-        td
-          | {{task.title}}
-        td
-          | {{task.description}}
-        td.text-center
-          input type="checkbox" ng-model="task.completed" ng-change="toggleTask(task)"
-        td.text-center
-          button.btn.btn-info.btn-xs.extra-space type='button' ng-click='editTask(task, $index)'
-            span.glyphicon.glyphicon-pencil
-          button.btn.btn-danger.btn-xs.extra-space type='button' ng-click='deleteTask(task, $index)'
-            span.glyphicon.glyphicon-trash
+          p.action-items
+            input type="checkbox" ng-model="task.completed" ng-change="toggleTask(task)"
+
+            button.btn.btn-info.btn-xs.extra-space type='button' ng-click='editTask(task, $index)'
+              span.glyphicon.glyphicon-pencil
+            button.btn.btn-danger.btn-xs.extra-space type='button' ng-click='deleteTask(task)'
+              span.glyphicon.glyphicon-trash
