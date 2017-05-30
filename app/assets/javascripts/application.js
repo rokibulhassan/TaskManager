@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require angular
 //= require bootstrap-sprockets
 //= require app
 //= require lib/angular-ui-notification.min
+//= require lib/angular-ui-sortable.min
 //= require_tree .

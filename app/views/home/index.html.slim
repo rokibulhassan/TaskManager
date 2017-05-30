@@ -23,7 +23,7 @@ div ng-controller="TaskCtrl"
             button.btn.btn-primary.go-down type="submit" ng-show="showEdit" ng-click="updateTask()" Update
 
   .row
-    ul.notes
+    ul.notes ui-sortable="" ng-model="myTasks"
       li ng-repeat="task in myTasks | orderBy:'id'"
         .sticky-notes ng-class="task.completed ? ($even ? 'rotate-1 green-bg' : 'rotate-2 green-bg') : ($even ? 'rotate-1 yellow-bg' : 'rotate-2 yellow-bg')"
           h4
