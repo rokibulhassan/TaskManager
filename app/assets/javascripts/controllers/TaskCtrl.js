@@ -3,6 +3,18 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
     getTasks();
     mangeDom(false, false);
 
+    $scope.sortableOptions = {
+        revert: true,
+        stop: function (e, ui) {
+            var sortList = $('#sortable').sortable('toArray');
+            angular.forEach(sortList, function (task_id, index) {
+                priority = index + 1;
+                taskService.updateTask(task_id, {task: {priority: priority}});
+            });
+            Notification.success('Task has been updated successfully.');
+        }
+    };
+
     function clearTaskForm() {
         $scope.task.title = null;
         $scope.task.description = null;

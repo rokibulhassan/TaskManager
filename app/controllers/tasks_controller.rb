@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destroy]
 
   def index
-    render json: current_user.tasks.as_json(:except => [:created_at, :updated_at])
+    render json: current_user.tasks.as_priority.as_json(:except => [:created_at, :updated_at])
   end
 
   def create
@@ -32,6 +32,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:user_id, :title, :description, :due_date, :completed)
+    params.require(:task).permit(:user_id, :title, :description, :due_date, :completed, :priority)
   end
 end
