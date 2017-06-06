@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   before_create :set_priority
 
   def self.next_priority
-    Task.as_priority.last.priority + 1
+    Task.as_priority.last.priority.to_i + 1
   end
 
   def complete!
