@@ -21,10 +21,17 @@ div ng-controller="TaskCtrl"
           .col-md-2.text-right
             button.btn.btn-primary.go-down type="submit" ng-hide="showEdit" ng-click="createTask()" Create
             button.btn.btn-primary.go-down type="submit" ng-show="showEdit" ng-click="updateTask()" Update
+  .row
+    .col-md-12.text-right
+      .btn-group
+        button type="button" class="btn btn-default" ng-click="changeSortMethod('')"
+          ' Reset
+        button type="button" class="btn btn-info" ng-click="changeSortMethod('completed')"
+          ' Status
 
   .row
     ul.notes#sortable ui-sortable="sortableOptions" ng-model="myTasks"
-      li ng-repeat="task in myTasks" id="{{task.id}}"
+      li ng-repeat="task in myTasks | orderBy:sortMethod" id="{{task.id}}"
         .sticky-notes ng-class="task.completed ? ($even ? 'rotate-1 green-bg' : 'rotate-2 green-bg') : ($even ? 'rotate-1 yellow-bg' : 'rotate-2 yellow-bg')"
           h4
             | {{task.title}}  # {{task.id}}

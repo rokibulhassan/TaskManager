@@ -3,6 +3,8 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
     getTasks();
     mangeDom(false, false);
 
+    $scope.sortMethod = '';
+
     $scope.sortableOptions = {
         revert: true,
         stop: function (e, ui) {
@@ -13,6 +15,10 @@ app.controller('TaskCtrl', function ($scope, $http, $location, taskService, Noti
             });
             Notification.success('Task has been updated successfully.');
         }
+    };
+
+    $scope.changeSortMethod = function (sortMethod) {
+        $scope.sortMethod = sortMethod;
     };
 
     function clearTaskForm() {
