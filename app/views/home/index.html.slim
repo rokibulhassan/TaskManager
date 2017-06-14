@@ -34,7 +34,7 @@ div ng-controller="TaskCtrl"
       li ng-repeat="task in myTasks | orderBy:sortMethod" id="{{task.id}}"
         .sticky-notes ng-class="task.completed ? ($even ? 'rotate-1 green-bg' : 'rotate-2 green-bg') : ($even ? 'rotate-1 yellow-bg' : 'rotate-2 yellow-bg')"
           h4
-            | {{task.title}}  # {{task.id}}
+            | {{task.title}}
           p
             | {{task.description}}
 
